@@ -1,7 +1,11 @@
-﻿internal class Program
+﻿namespace Module2HW2
 {
-    private static void Main(string[] args)
+    public class Program
     {
-        Console.WriteLine("Hello, World!");
+        public static void Main(string[] args)
+        {
+            FakeClient.StartShoping1();
+            FakeClient.StartShoping2();
+        }
     }
 }
