@@ -2,37 +2,44 @@ namespace Module2HW2
 {
     public class Basket
     {
-        private List<Product> _prodInBasket;
+        private Product[] _prodInBasket;
+        private int i = 0;
 
         public Basket()
         {
-           _prodInBasket = new List<Product>();
+           _prodInBasket = new Product[1];
         }
 
         public void AddToBasket(Product item)
         {
-            _prodInBasket.Add(item);
+            _prodInBasket[i] = item;
+            i++;
+            Array.Resize(ref _prodInBasket, i + 1);
         }
 
         public void DeleteFromBasket(Product item)
         {
-            for (int i = 0; i < _prodInBasket.Count; i++)
+            var res = new List<Product>(i);
+            res = _prodInBasket.ToList();
+            for (int i = 0; i < res.Count; i++)
             {
                 if (_prodInBasket[i].Name == item.Name)
                 {
-                    _prodInBasket.RemoveAt(i);
+                    res.RemoveAt(i);
                 }
             }
+
+            _prodInBasket = res.ToArray();
         }
 
-        public List<Product> GetBasket()
+        public Product[] GetBasket()
         {
             return _prodInBasket;
         }
 
         public void CleanBasket()
         {
-            _prodInBasket.Clear();
+           _prodInBasket = new Product[1];
         }
     }
 }

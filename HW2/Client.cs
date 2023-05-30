@@ -5,33 +5,35 @@ namespace Module2HW2
     {
         public Client()
         {
-            Bas = new Basket();
+            Basket = new Basket();
         }
 
-        public Basket Bas { get; set; }
+        public Basket Basket { get; set; }
 
         public void TakeBasket()
         {
             Random rand = new Random((int)DateTime.Now.Ticks);
-            var res = new Basket();
             var list = Product.GetListProd();
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-            res.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
-            Bas = res;
+            Basket.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
+            Basket.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
+            Basket.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
+            Basket.AddToBasket(new Product(list[rand.Next(0, list.Count)], rand.Next(1, 10)));
         }
 
         public Order GetOrder(Basket list)
         {
-            var prod = new List<Product>(Bas.GetBasket());
             Order res = new Order(list);
             list.CleanBasket();
             Console.WriteLine("===================================================");
             Console.WriteLine($"Order with ID {res.OrderId}");
             Console.WriteLine("===================================================");
-            foreach (var item in prod)
+            foreach (var item in res.ProdInOrder)
             {
+                if (item == null)
+                {
+                    continue;
+                }
+
                 Console.WriteLine($"{item.Name} -- {item.Cost} -- {item.Number} -- {item.Sum}");
             }
 
