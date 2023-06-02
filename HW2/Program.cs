@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace Module2HW2
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            FakeClient.StartShoping1();
+            FakeClient.StartShoping2();
+        }
+    }
+}
